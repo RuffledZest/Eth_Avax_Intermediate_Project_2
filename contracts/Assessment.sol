@@ -1,60 +1,42 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
-
-//import "hardhat/console.sol";
 
 contract Assessment {
     address payable public owner;
-    uint256 public balance;
 
-    event Deposit(uint256 amount);
-    event Withdraw(uint256 amount);
+    event ContactAdded(string name, address _address);
+    event ContactRemoved(string name, address _address);
 
-    constructor(uint initBalance) payable {
+    constructor() payable {
         owner = payable(msg.sender);
-        balance = initBalance;
     }
 
-    function getBalance() public view returns(uint256){
-        return balance;
+    struct Contact {
+        string name;
+        address _address;
     }
 
-    function deposit(uint256 _amount) public payable {
-        uint _previousBalance = balance;
+    Contact[] public contacts;
 
-        // make sure this is the owner
+    function addContact(string memory _name, address _address) public {
         require(msg.sender == owner, "You are not the owner of this account");
-
-        // perform transaction
-        balance += _amount;
-
-        // assert transaction completed successfully
-        assert(balance == _previousBalance + _amount);
-
-        // emit the event
-        emit Deposit(_amount);
+        contacts.push(Contact(_name, _address));
+        emit ContactAdded(_name, _address);
     }
 
-    // custom error
-    error InsufficientBalance(uint256 balance, uint256 withdrawAmount);
-
-    function withdraw(uint256 _withdrawAmount) public {
+    function removeContact(string memory _name, address _address) public {
         require(msg.sender == owner, "You are not the owner of this account");
-        uint _previousBalance = balance;
-        if (balance < _withdrawAmount) {
-            revert InsufficientBalance({
-                balance: balance,
-                withdrawAmount: _withdrawAmount
-            });
+        for (uint i = 0; i < contacts.length; i++) {
+            if (keccak256(abi.encodePacked(contacts[i].name)) == keccak256(abi.encodePacked(_name)) && contacts[i]._address == _address) {
+                contacts[i] = contacts[contacts.length - 1];
+                contacts.pop();
+                emit ContactRemoved(_name, _address);
+                break;
+            }
         }
+    }
 
-        // withdraw the given amount
-        balance -= _withdrawAmount;
-
-        // assert the balance is correct
-        assert(balance == (_previousBalance - _withdrawAmount));
-
-        // emit the event
-        emit Withdraw(_withdrawAmount);
+    function getContacts() public view returns (Contact[] memory) {
+        return contacts;
     }
 }
