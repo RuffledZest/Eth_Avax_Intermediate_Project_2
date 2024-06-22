@@ -72,8 +72,8 @@ export default function HomePage() {
       <div className="popup">
         <form className="popup" onSubmit={submitForm}>
           <div className="popup-inner">
+              <h2>ADD CONTACT</h2>
             <div>
-              <h2>Add Contact</h2>
               <label htmlFor='text'>Name: </label>
               <br />
               <input type="text" value={name} autoComplete='off' onChange={(e) => setName(e.target.value)} />
@@ -98,6 +98,7 @@ export default function HomePage() {
             background: rgba(0, 0, 0, 0.7);
             color: black;
             display: flex;
+
             justify-content: center;
             align-items: center;
           }
@@ -105,8 +106,22 @@ export default function HomePage() {
             position: relative;
             padding: 20px;
             width: 60%;
-            background: white;
+            color: white;
+
+            background-image: url('https://img.freepik.com/free-vector/dark-gradient-background-with-copy-space_53876-99548.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
             border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+          }
+          input {
+              width: 100vh;
+              padding: 10px;
+              border-radius: 10px;
           }
           .close-btn {
             position: absolute;
@@ -119,6 +134,21 @@ export default function HomePage() {
             padding: 5px 10px;
             cursor: pointer;
           }
+            button {
+              background-color: #25217e;
+              color: white;
+              border: 2px solid white;
+              border-radius: 5px;
+              padding: 10px 20px;
+              margin: 10px;
+              cursor: pointer;
+              transition: 0.3s;
+            }
+            button:hover {
+              background-color: black;
+              color: white;
+              scale: 1.1;
+            }
         `}</style>
       </div>
     ) : "";
@@ -209,7 +239,7 @@ export default function HomePage() {
     return (
       <>
         <div className="account">
-          <p>Your Account: {account}</p>
+          <p className="account-no">Your Account: {account}</p>
           <img className="profile-img" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnhoaGU3dm12bXBpOW5xNWg1czdibGw4dHh0MDFya2VuaHFxa3k4ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tHIRLHtNwxpjIFqPdV/giphy.webp" alt="ATM" />
           <div>
             <button onClick={() => setButtonPopup(true)}>Add Contact</button>
@@ -229,6 +259,9 @@ export default function HomePage() {
               justify-content: space-between;
               gap: 20px;
               align-items: center;
+            }
+            .account-no {
+              color: white;
             }
             button {
               background-color: #25217e;
