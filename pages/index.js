@@ -59,8 +59,8 @@ export default function HomePage() {
     e.preventDefault();
     if (name && address) {
       addContact(name, address);
-      // setName("");
-      // setAddress("");
+      setName("");
+      setAddress("");
       setButtonPopup(false);
     } else {
       alert("There is some error");
