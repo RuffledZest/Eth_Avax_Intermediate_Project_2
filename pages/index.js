@@ -59,8 +59,8 @@ export default function HomePage() {
     e.preventDefault();
     if (name && address) {
       addContact(name, address);
-      setName("");
-      setAddress("");
+      // setName("");
+      // setAddress("");
       setButtonPopup(false);
     } else {
       alert("There is some error");
@@ -70,7 +70,7 @@ export default function HomePage() {
   function Popup(props) {
     return (props.trigger) ? (
       <div className="popup">
-        <form className="popup" onSubmit={submitForm}>
+        <form className="popup" onSubmit={submitForm} action=''>
           <div className="popup-inner">
               <h2>ADD CONTACT</h2>
             <div>
@@ -172,13 +172,47 @@ export default function HomePage() {
   const showAllContacts = () => {
     return (
       contacts.map((contact, index) => (
-        <div key={index}>
-          <h1>Name is: {contact[0]}: Address is:{contact[1]}
-            <button onClick={removeContact(contact)}>Remove</button>
-          </h1>
+        <div key={index} className='super-div'>
+          <section className='contact-container'>
+          <h4>{index+1}. </h4>
+          <img className='contact-profile' src="https://media.tenor.com/6Atn7vAqGVgAAAAM/pedrocat-pedro.gif" alt="contact-pfp" />
+          <h4>Name is:&nbsp; {contact[0]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Address is: &nbsp;{contact[1]}
+          
+          </h4>
+            <button className='remove-btn' onClick={removeContact(contact)}>Remove</button>
+          </section>
+          <br />
           <style jsx>{`
-            h1 {
+            .super-div {
+              gap: 10px;
+              width: 100vh;
+            }
+            .contact-profile {
+              height: 50px;
+              border-radius: 50%;
+            }
+            .contact-container {
+              
+              display: flex;
+              justify-content: space-around;
+              padding: 5px;
+              align-items: center;
+              
+              border-radius: 10px;
+              background-color: #19192b;
+              opacity: 0.8;
+            }
+            h4 {
               color: white;
+            }
+            .remove-btn {
+              background-color: red;
+              color: white;
+              border: none;
+              border-radius: 5px;
+              padding: 5px 10px;
+              cursor: pointer;
+              transition: 0.3s;
             }
           `}</style>
         </div>
@@ -245,10 +279,10 @@ export default function HomePage() {
             <button onClick={() => setButtonPopup(true)}>Add Contact</button>
             <button onClick={() => { getContacts(); setShowContacts(!showContacts); }}>Get Contacts</button>
             <button onClick={disconnect}>Disconnect Wallet</button>
+          </div>
             <section>
               {showContacts && showAllContacts()}
             </section>
-          </div>
           <style jsx>{`
             .profile-img {
               border-radius: 50%;
@@ -291,7 +325,7 @@ export default function HomePage() {
       <header><h1>Welcome to the Vib's Crypto Address Book</h1></header>
       {initUser()}
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <h3>My popup</h3>
+        
       </Popup>
       <style jsx>{`
         .container {
