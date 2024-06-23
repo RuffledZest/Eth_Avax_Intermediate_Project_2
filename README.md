@@ -13,7 +13,7 @@ The application has the following functionality:
 * Disconnect Wallet: To disconnect the account associated. 
 
 * Add Contact: This will open a popup form asking for 'Name' and 'Address'. Once fields are filled and submitted. A Contract Interaction Request will commence, once confirmed from Metamask by the user, the Contact is added to the list.
-* Any modifications needed to be made to files/fold
+* Remove Contact: This button will be associated with the each contact Index. And will appear once 'Get Contact' is called. On clicking Remove contact, it will fetch the name and the address of that index, then another contract intreaction will take place, upon conforming the trasaction from Metamask, the 'Name' and 'Address' will be compared to the Contacts list in storage, if matched it will be replaced with the last entry and contact will be poped out.
 
 # Starter Next/Hardhat Project
 
