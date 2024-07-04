@@ -2,7 +2,7 @@
 
 This is an Address Book based on solidity, in which user can add or remove a name with their address on command.
 
-![Description](https://drive.google.com/file/d/1v4axYMfjBvFhQe-wAGZ1MBms2mm_W7-r/view?usp=sharing)
+![The Frontend Interface](https://drive.google.com/uc?export=view&id=1v4axYMfjBvFhQe-wAGZ1MBms2mm_W7-r)
 
 ## Description
 
