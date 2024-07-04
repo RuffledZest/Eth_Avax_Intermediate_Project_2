@@ -2,6 +2,8 @@
 
 This is an Address Book based on solidity, in which user can add or remove a name with their address on command.
 
+![Description](https://drive.google.com/file/d/1v4axYMfjBvFhQe-wAGZ1MBms2mm_W7-r/view?usp=sharing)
+
 ## Description
 
 The application has the following functionality:
@@ -27,23 +29,33 @@ The application has the following functionality:
 
 After cloning the github, you will want to do the following to get the code running on your computer.
 
-1. Inside the project directory, in the terminal type:
+
+1. Inside the project directory, install dotenv, also create an .env file in the root folder, inside .env type:
+
+```shell
+WALLET_PRIVATE_KEY = <enter your private key here> 
+SEPOLIA_URL = "enter your url your here"
+
+```
+**note: ensure your .gitignore file has .env in it**
+
+2. Inside the project directory, in the terminal type:
 
 ```shell
 npm i
 ```
-2. Open two additional terminals in your VS code
-3. In the second terminal type: 
+3. Open two additional terminals in your VS code
+4. In the second terminal type: 
 
 ```shell
 npx hardhat node
 ```
-4. In the third terminal, type: 
+5. In the third terminal, type: 
 
 ```shell
-npx hardhat run --network localhost scripts/deploy.js
+npx hardhat run --network localhost scripts/sepolia.js
 ```
-5. Back in the first terminal, to launch the front-end enter the command:
+6. Back in the first terminal, to launch the front-end enter the command:
 
 ```shell
 npm run dev
