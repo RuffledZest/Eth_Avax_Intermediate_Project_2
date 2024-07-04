@@ -59,8 +59,8 @@ export default function HomePage() {
     e.preventDefault();
     if (name && address) {
       addContact(name, address);
-      // setName("");
-      // setAddress("");
+      setName("");
+      setAddress("");
       setButtonPopup(false);
     } else {
       alert("There is some error");
@@ -174,15 +174,46 @@ export default function HomePage() {
       contacts.map((contact, index) => (
         <div key={index} className='super-div'>
           <section className='contact-container'>
-          <h4>{index+1}. </h4>
+          <div className='id-img'>
+
+          <h4>{index+1}.</h4>
           <img className='contact-profile' src="https://media.tenor.com/6Atn7vAqGVgAAAAM/pedrocat-pedro.gif" alt="contact-pfp" />
-          <h4>Name is:&nbsp; {contact[0]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Address is: &nbsp;{contact[1]}
+          </div>
+          <div className='name-address'>
+
+          <h4><span className='name-field'>Name is:</span>&nbsp; {contact[0]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span className='address-field'>Address is:</span> &nbsp;{contact[1]}
           
           </h4>
+          </div>
+          
+
             <button className='remove-btn' onClick={removeContact(contact)}>Remove</button>
+          
           </section>
           <br />
           <style jsx>{`
+
+            .name-field {
+              color: #00ff00;
+            }
+            .address-field {
+              
+              color: #ff00ff;
+            }
+            .name-address {
+              display: flex;
+              gap: 10px;
+              justify-content: start;
+            }
+
+          
+
+            .id-img {
+              display: flex;
+              gap: 10px;
+              margin-left: 10px;
+              align-items: center;
+            }
             .super-div {
               gap: 10px;
               width: 100vh;
@@ -192,9 +223,10 @@ export default function HomePage() {
               border-radius: 50%;
             }
             .contact-container {
+            
               
               display: flex;
-              justify-content: space-around;
+              justify-content: space-between;
               padding: 5px;
               align-items: center;
               
@@ -206,13 +238,20 @@ export default function HomePage() {
               color: white;
             }
             .remove-btn {
+
               background-color: red;
               color: white;
               border: none;
               border-radius: 5px;
               padding: 5px 10px;
+              margin-right: 10px;
               cursor: pointer;
               transition: 0.3s;
+            }
+            .remove-btn:hover {
+              background-color: white;
+              color: black;
+              scale: 1.1;
             }
           `}</style>
         </div>
@@ -278,7 +317,7 @@ export default function HomePage() {
           <div>
             <button onClick={() => setButtonPopup(true)}>Add Contact</button>
             <button onClick={() => { getContacts(); setShowContacts(!showContacts); }}>Get Contacts</button>
-            <button onClick={disconnect}>Disconnect Wallet</button>
+            <button className='disconnect-btn' onClick={disconnect}>Disconnect Wallet</button>
           </div>
             <section>
               {showContacts && showAllContacts()}
@@ -300,7 +339,7 @@ export default function HomePage() {
             button {
               background-color: #25217e;
               color: white;
-              border: 2px solid white;
+              border: 1px solid rgb(255, 255, 255);
               border-radius: 5px;
               padding: 10px 20px;
               margin: 10px;
@@ -309,7 +348,21 @@ export default function HomePage() {
             }
             button:hover {
               background-color: black;
+              color: green;
+              scale: 0.9;
+            }
+            .disconnect-btn {
+              background-color: red;
               color: white;
+              border: white 1px solid;
+              border-radius: 5px;
+              padding: 10px 20px;
+              cursor: pointer;
+              transition: 0.3s;
+            }
+            .disconnect-btn:hover {
+              background-color: black;
+              color: red;
               scale: 0.9;
             }
           `}</style>
